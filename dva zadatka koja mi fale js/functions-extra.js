@@ -107,9 +107,9 @@ function convert(a) {
   var newString = [];
 
   for (i = 0; i < a.length; i++) {
-    if (a[i] == "string") {
-      newString = newString + " ' " + a[i] + " ' ";
-    } else if (a[i] == " ") {
+    if (a[i] !== " ") {
+      newString = newString + "'" + a[i] + "'";
+    } else {
       newString = newString + "Null";
     }
   }
