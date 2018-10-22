@@ -13,5 +13,5 @@ function arraysEqual(array1, array2) {
     return true;
 }
 
-var result = arraysEqual([-2, 0, 5], [-2, -1, 5]);
-console.log(result);
+// var result = arraysEqual([-2, 0, 5], [-2, -1, 5]);
+// console.log(result);
