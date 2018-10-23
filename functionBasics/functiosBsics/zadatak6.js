@@ -7,11 +7,14 @@
 function reverse(inputstring){
     var newArray = "";
     for(var i = inputstring.length -1;i >= 0 ; i--){
-        newArray +=inputstring[i]
+        newArray +=inputstring[i];
        
        }
-    return newArray
+    return newArray;
 }
-console.log(reverse('gojko'));
+console.log(reverse('vilic'));
 
 // ne znam kako postaviti da u slucaju ako nema parametara stavim zagrade
+
+
+
