@@ -506,71 +506,144 @@
 // // }
 // // console.log(arr([2, 4, 7, 5, 6], 6));
 
-// (function() {
-//   function Person(name, surname) {
-//     this.name = name;
-//     this.surname = surname;
+(function() {
+  function Person(name, surname) {
+    this.name = name;
+    this.surname = surname;
 
-//     this.getData = function() {
-//       return this.name + " " + this.surname;
-//     };
-//   }
+    this.getData = function() {
+      return this.name + " " + this.surname;
+    };
+  }
 
-//   function Seat(number, category) {
-//     this.number = number;
-//     this.category = category;
-//     if (category == undefined) {
-//       this.category = "e";
-//     }
-//     if (number == undefined) {
-//       this.number = Math.floor(Math.random() * 100 + 10);
-//     }
+  function Seat(number, category) {
+    this.number = number;
+    this.category = category;
+    if (category == undefined) {
+      this.category = "e";
+    }
+    if (number == undefined) {
+      this.number = Math.floor(Math.random() * 100 + 10);
+    }
 
-//     this.getData = function() {
-//       return this.number + ", " + this.category.toUpperCase();
-//     };
-//   }
+    this.getData = function() {
+      return this.number + ", " + this.category.toUpperCase();
+    };
+  }
 
-//   function Pasanger(person, seat) {
-//     this.person = person;
-//     this.seat = seat;
+  function Passanger(person, seat) {
+    this.person = person;
+    this.seat = seat;
 
-//     this.getData = function() {
-//       return seat.getData() + " " + person.getData();
-//     };
-//   }
+    this.getData = function() {
+      return seat.getData() + " " + person.getData() + "\n" + "\t\t";
+    };
+  }
 
-//   function Flight(relation, date) {
-//     this.relation = relation;
-//     this.date = new Date(date);
-//     this.listOfPasengers = [];
+  function Flight(relation, date) {
+    this.relation = relation;
+    this.date = date;
+    this.listOfPasengers = [];
+    this.totalNumOfPassengers = 0;
 
-//     this.addPassenger = function(passenger) {
-//       this.listOfPasengers.push(passenger);
-//     };
-//   }
+    this.addPassenger = function(passenger) {
+      this.listOfPasengers.push(passenger);
+      this.totalNumOfPassengers++;
+    };
 
-//   function Airport(name) {
-//     this.name = "Nikola Tesla";
-//     this.listOfFlights = [];
+    this.firstAndLast = function() {
+      var arr = [];
 
-//     this.addFlight = function(flight) {
-//       this.listOfFlights.push(flight);
-//     };
-//   }
+      var c = 0;
+      var b = 0;
 
-//   var gojko = new Person("Gojko", "Vilic");
-//   var seat1 = new Seat();
+      arr = this.relation.split("-");
 
-//   console.log(seat1);
-//   var pass1 = new Pasanger(gojko, seat1);
+      b = arr[0].length - 1;
+      c = arr[1].length - 1;
 
-//   var flight1 = new Flight("Beograd-Paris", "10-10-2018");
+      arr[0] = arr[0][0] + arr[0][b].toUpperCase();
 
-//   var NikolaTesla = new Airport();
+      arr[1] = arr[1][0] + arr[1][c].toUpperCase();
 
-//   flight1.addPassenger(pass1);
-//   NikolaTesla.addFlight(flight1);
+      arr = arr.join("-");
+      return arr;
+    };
 
-//   console.log(NikolaTesla);
-// })();
+    this.getData = function() {
+      var listOfP = "";
+
+      for (var i = 0; i < this.listOfPasengers.length; i++) {
+        listOfP += this.listOfPasengers[i].getData();
+      }
+
+      return this.date + ", " + this.firstAndLast() + "\n" + "\t\t" + listOfP;
+    };
+  }
+
+  function Airport(name) {
+    this.name = "Nikola Tesla";
+    this.listOfFlights = [];
+
+    this.addFlight = function(flight) {
+      this.listOfFlights.push(flight);
+    };
+
+    var sum = 0;
+    this.getData = function() {
+      for (var i = 0; i < this.listOfFlights.length; i++) {
+        sum += this.listOfFlights[i].totalNumOfPassengers;
+      }
+      var listOfF = "";
+      for (var j = 0; j < this.listOfFlights.length; j++) {
+        listOfF += this.listOfFlights[j].getData();
+      }
+      return (
+        "Airport: " +
+        this.name +
+        ", " +
+        "total passengers: " +
+        sum +
+        "\n" +
+        listOfF
+      );
+    };
+  }
+
+  function createFlight(relation, date) {
+    return new Flight(relation, date);
+  }
+
+  function createPassanger(person, seat) {
+    return new Passanger(person, seat);
+  }
+
+  var gojko = new Person("Gojko", "Vilic");
+  var seat1 = new Seat(48);
+  var stefan = new Person("Stefan", "Bulatovic");
+  var seat2 = new Seat();
+  var rados = new Person("Rados", "Serdarevic");
+  var seat3 = new Seat(49);
+  var royal = new Person("Royal", "Flush");
+  var seat4 = new Seat(50, "B");
+
+  var pass1 = new Passanger(gojko, seat1);
+  var pass2 = new Passanger(stefan, seat2);
+  var pass3 = createPassanger(rados, seat3);
+  var pass4 = createPassanger(royal, seat4);
+
+  var flight1 = new Flight("Beograd-Paris", "10-10-2018");
+  var flight2 = createFlight("Beograd-NewYork", "10-10-2018");
+
+  var NikolaTesla = new Airport();
+
+  flight1.addPassenger(pass1);
+  flight1.addPassenger(pass2);
+  flight2.addPassenger(pass3);
+  flight2.addPassenger(pass4);
+
+  NikolaTesla.addFlight(flight1);
+  NikolaTesla.addFlight(flight2);
+
+  console.log(NikolaTesla.getData());
+})();
