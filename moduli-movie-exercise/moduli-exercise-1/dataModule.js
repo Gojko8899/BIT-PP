@@ -1,33 +1,43 @@
-var dataModule = (function () {
+const dataModule = (() => {
 
-    var storage = {
+    const storage = {
         listOfMovies: [],
     }
 
-    function Movie(title, genre, length) {
+    class Movie {
+        constructor(title, genre, length) {
+            this.title = title;
+            this.genre = genre;
+            this.length = length;
 
-        this.title = title;
-        this.genre = genre;
-        this.length = length;
+        }
+        getInfo() {
 
-    }
-
-    Movie.prototype.getInfo = function () {
-
-        return 'TITLE: ' + this.title + " GENRE: " + this.genre + ' LENGTH: ' + this.length
-
-
-    }
-
-    function createMovie(title, genre, length) {
-
-
-        return new Movie(title, genre, length)
+            return 'TITLE: ' + this.title + " GENRE: " + this.genre + ' LENGTH: ' + this.length
+        }
 
     }
 
 
-    function addMovie(movie) {
+    class Program {
+
+        constructor(date) {
+
+            this.date = date;
+
+        }
+
+
+
+    }
+
+    const createMovie = (title, genre, length) => new Movie(title, genre, length);
+
+
+
+
+
+    const addMovie = (movie) => {
 
         storage.listOfMovies.push(movie);
 
@@ -35,14 +45,13 @@ var dataModule = (function () {
 
     }
 
-
     return {
 
-        createMovie: createMovie,
-        addMovie: addMovie
+        createMovie,
+        addMovie
 
     }
 
 
 
-}())
+})()

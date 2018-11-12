@@ -1,57 +1,35 @@
-var uiModul = (function () {
+const uiModul = (() => {
 
+    const title = $("#title");
+    const genre = $("#select");
+    const length = $("#length");
+    const movieList = $("#resdiv")
 
-    var title = $("#title");
+    const Validate = () =>
 
-    var genre = $("#select");
+        ({
 
-    var length = $("#length");
+            movieTitle: title.val(),
 
-    var movieList = $("#resdiv")
+            movieGenre: genre.val(),
 
+            movieLength: length.val()
 
-    function Validate() {
+        })
 
-        var movieTitle = title.val();
-        var movieGenre = genre.val();
-        var movieLength = length.val();
+    const DisplayMovie = movie => {
 
-
-        return {
-
-            movieTitle: movieTitle,
-
-            movieGenre: movieGenre,
-
-            movieLength: movieLength
-
-
-        }
-
-
-    }
-
-
-
-    function DisplayMovie(movie) {
-
-        var para = $("<p></p>").text(movie);
+        const para = $("<p></p>").text(movie);
 
         movieList.append(para);
 
-
     }
-
 
     return {
 
-
-        Validate: Validate,
-
-        DisplayMovie: DisplayMovie
+        Validate,
+        DisplayMovie
 
     }
 
-
-
-}())
+})()
