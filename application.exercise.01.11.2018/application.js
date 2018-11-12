@@ -1,64 +1,64 @@
-// function Person(name, surname) {
-//   this.name = name;
-//   this.surname = surname;
-// }
-// Employee.prototype = Object.create(Person.prototype);
-// Employee.prototype.constructor = Employee;
-// function Employee(name, surname, job, salary) {
-//   this.job = job;
-//   this.salary = salary;
-//   Person.call(this, name, surname);
-// }
-// Employee.prototype.getData = function() {
-//   return this.name + " " + this.surname + ":" + this.salary;
-// };
-// Employee.prototype.getSalary = function() {
-//   return this.salary;
-// };
-// Employee.prototype.increaseSalary = function() {
-//   var part = this.salary / 10;
-//   return this.salary + part;
-// };
-// Developer.prototype = Object.create(Employee.prototype);
-// Developer.prototype.constructor = Developer;
-// function Developer(name, surname, job, salary, specialization) {
-//   this.specialization = specialization;
-//   Employee.call(this, name, surname, job, salary);
-// }
-// Developer.prototype.getSpecialization = function() {
-//   return this.specialization;
-// };
-// Manager.prototype = Object.create(Employee.prototype);
-// Manager.prototype.constructor = Manager;
-// function Manager(name, surname, job, salary, department) {
-//   this.department = department;
-//   Employee.call(this, name, surname, job, salary);
-// }
-// Manager.prototype.getDepartment = function() {
-//   return this.department;
-// };
-// Manager.prototype.changeDepartment = function() {
-//   return (this.department = "Analytics");
-// };
-// var newEmployee = new Employee("vilic", "vilic", "IT strucnjak veliki", 25000);
-// var newDeveloper = new Developer(
-//   "Gojko",
-//   "Vilic",
-//   "IT Strucnjak",
-//   "mala",
-//   "python expert"
-// );
-// var newManager = new Manager(
-//   "Stefan",
-//   "Bulatovic",
-//   "Manager",
-//   "infinity",
-//   "NASA"
-// );
-// console.log(newEmployee.increaseSalary());
+function Person(name, surname) {
+  this.name = name;
+  this.surname = surname;
+}
+Employee.prototype = Object.create(Person.prototype);
+Employee.prototype.constructor = Employee;
+function Employee(name, surname, job, salary) {
+  this.job = job;
+  this.salary = salary;
+  Person.call(this, name, surname);
+}
+Employee.prototype.getData = function () {
+  return this.name + " " + this.surname + ":" + this.salary;
+};
+Employee.prototype.getSalary = function () {
+  return this.salary;
+};
+Employee.prototype.increaseSalary = function () {
+  var part = this.salary / 10;
+  return this.salary + part;
+};
+Developer.prototype = Object.create(Employee.prototype);
+Developer.prototype.constructor = Developer;
+function Developer(name, surname, job, salary, specialization) {
+  this.specialization = specialization;
+  Employee.call(this, name, surname, job, salary);
+}
+Developer.prototype.getSpecialization = function () {
+  return this.specialization;
+};
+Manager.prototype = Object.create(Employee.prototype);
+Manager.prototype.constructor = Manager;
+function Manager(name, surname, job, salary, department) {
+  this.department = department;
+  Employee.call(this, name, surname, job, salary);
+}
+Manager.prototype.getDepartment = function () {
+  return this.department;
+};
+Manager.prototype.changeDepartment = function () {
+  return (this.department = "Analytics");
+};
+var newEmployee = new Employee("vilic", "vilic", "IT strucnjak veliki", 25000);
+var newDeveloper = new Developer(
+  "Gojko",
+  "Vilic",
+  "IT Strucnjak",
+  "mala",
+  "python expert"
+);
+var newManager = new Manager(
+  "Stefan",
+  "Bulatovic",
+  "Manager",
+  "infinity",
+  "NASA"
+);
+console.log(newEmployee.increaseSalary());
 
 
-// 2 Zadatak Applications
+2 Zadatak Applications
 function App(name, licence, stars) {
   this.name = name;
   this.licence = licence;
@@ -68,7 +68,7 @@ function WebApp(name, url, technologies, licence, stars) {
   this.url = url;
   this.technologies = technologies;
   App.call(this, name, licence, stars);
-  WebApp.prototype.getData = function() {
+  WebApp.prototype.getData = function () {
     return (
       this.name +
       "," +
@@ -82,45 +82,45 @@ function WebApp(name, url, technologies, licence, stars) {
     );
   };
 
-  WebApp.prototype.reactBased = function() {
+  WebApp.prototype.reactBased = function () {
     if (technologies === "React") {
       return "Platform is react!";
     } else {
       return "The platform is not react";
     }
   };
-  WebApp.prototype.like = function(){
+  WebApp.prototype.like = function () {
     return ++this.stars;
+  }
 }
-}  
 
 function MobileApp(name, platforms, licence, stars) {
   this.platforms = platforms;
   App.call(this, name, licence, stars);
-  MobileApp.prototype.getData = function() {
+  MobileApp.prototype.getData = function () {
     return (
       this.name + "," + this.platform + "," + this.licence + "," + this.stars
     );
   };
-  MobileApp.prototype.isCCLicence = function() {
+  MobileApp.prototype.isCCLicence = function () {
     if (this.licence === "CC") {
       return "The licence of the app is CC";
     } else {
       return "The licence of the app is not CC";
     }
   };
-  MobileApp.prototype.forAndroid = function() {
+  MobileApp.prototype.forAndroid = function () {
     if (platforms === "Android") {
       return "Platform is for android";
     } else {
       return "The platform is not for android";
     }
   };
-  MobileApp.prototype.like = function(){
-      return ++stars;
+  MobileApp.prototype.like = function () {
+    return ++stars;
   }
-  MobileApp.prototype.showStars = function(){
-      console.log(stars);
+  MobileApp.prototype.showStars = function () {
+    console.log(stars);
   }
 }
 
